@@ -19,11 +19,14 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Build with Gradle
-      run: ./gradlew build
+    - name: Install Gradle
+      uses: gradle/gradle-build-action@v2
+
+    - name: Build APK
+      run: gradle assembleDebug
 
     - name: Upload APK
       uses: actions/upload-artifact@v3
       with:
         name: ChessCoachApp
-        path: app/build/outputs/apk/debug/app-debug.apk AA 
+        path: app/build/outputs/apk/debug/app-debug.apk
